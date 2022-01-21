@@ -27,7 +27,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Expediente")
+@Table(name="expediente")
 public class Expediente implements Serializable{
 	/**
 	 * 
@@ -46,10 +46,10 @@ public class Expediente implements Serializable{
 	@NotEmpty(message = "Debe asignarse a una especie")
 	private Date fecha;
 	
-	@OneToMany(mappedBy="mascota")
+	@OneToMany(mappedBy="expediente")
 	private List<Mascota> mascotas;
 	
-	@OneToMany(mappedBy ="diagnostico")
+	@OneToMany(mappedBy ="tratamiento")
     private List<Diagnostico> diagnosticos;
 
 }

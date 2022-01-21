@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 
 	@Entity
-	@Table(name="Cita")
+	@Table(name="cita")
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor

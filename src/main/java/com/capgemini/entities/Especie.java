@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Especie")
+@Table(name="especie")
 public class Especie implements Serializable{
 
 	private static final long serialVersionUID = 1L;

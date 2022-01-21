@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Tratamiento")
+@Table(name="tratamiento")
 public class Tratamiento implements Serializable {
 
 	
@@ -44,7 +44,7 @@ public class Tratamiento implements Serializable {
 	@ManyToOne
 	private Diagnostico diagnostico;
 	
-	@OneToMany(mappedBy="tipoTratamiento")
+	@OneToMany(mappedBy="tratamiento")
 	private List<TipoTratamiento> tiposTratamientos;
 
 

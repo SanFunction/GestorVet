@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Cliente")
+@Table(name="cliente")
 public class Cliente implements Serializable{
 
 	/**

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Estado")
+@Table(name="estado")
 public class Estado implements Serializable{
 
 	private static final long serialVersionUID = 1L;

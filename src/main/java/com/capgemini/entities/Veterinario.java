@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Veterinario")
+@Table(name="veterinario")
 public class Veterinario implements Serializable{
 
 	/**

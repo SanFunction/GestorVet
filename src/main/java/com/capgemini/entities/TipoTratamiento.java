@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="TipoTratamiento")
+@Table(name="tipo_tratamiento")
 public class TipoTratamiento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
