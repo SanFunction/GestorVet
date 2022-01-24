@@ -38,9 +38,9 @@ public class Expediente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	@NotEmpty(message = "El campo no puede estar vacio")
-	private String estado;
+	@ManyToOne
+	private Estado estado;
 	
 	@NotNull
 	@NotEmpty(message = "Debe asignarse a una especie")

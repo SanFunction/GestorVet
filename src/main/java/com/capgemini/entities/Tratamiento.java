@@ -44,8 +44,7 @@ public class Tratamiento implements Serializable {
 	@ManyToOne
 	private Diagnostico diagnostico;
 	
-	@OneToMany(mappedBy="tratamiento")
-	private List<TipoTratamiento> tiposTratamientos;
+	private String tiposTratamientos;
 
 
 	
