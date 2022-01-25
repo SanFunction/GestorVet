@@ -1,11 +1,13 @@
 package com.capgemini.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,4 +35,7 @@ public class Estado implements Serializable{
 	@NotEmpty(message = "El campo no puede estar vacio")
 	@Size(min = 4, max = 100, message = "El nombre entre 4 y 100 caracteres")
 	private String estado;
+	
+	@OneToMany(mappedBy = "estado")
+	private List<Expediente> expedientes;
 }

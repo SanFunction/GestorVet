@@ -61,7 +61,8 @@ public class Mascota implements Serializable {
 	
 	@NotNull
 	@NotEmpty(message = "Debe asignarse a una especie")
-	private String especie;
+	@ManyToOne
+	private Especie especie;
 	
 	private String foto;
 	
