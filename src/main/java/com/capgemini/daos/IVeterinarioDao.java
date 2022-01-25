@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Veterinario;
 
 @Repository
-public interface VeterinarioDao extends JpaRepository<Veterinario, Long>  {
+public interface IVeterinarioDao extends JpaRepository<Veterinario, Long>  {
 
 }

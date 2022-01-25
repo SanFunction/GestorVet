@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Cliente;
 
 @Repository
-public interface ClienteDao extends JpaRepository<Cliente, Long>  {
+public interface IClienteDao extends JpaRepository<Cliente, Long>  {
 
 }

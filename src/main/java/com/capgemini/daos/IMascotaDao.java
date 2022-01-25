@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Mascota;
 
 @Repository
-public interface MascotaDao extends JpaRepository<Mascota, Long>  {
+public interface IMascotaDao extends JpaRepository<Mascota, Long>  {
 
 }

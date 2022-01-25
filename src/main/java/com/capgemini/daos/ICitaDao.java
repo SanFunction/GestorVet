@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Cita;
 
 @Repository
-public interface CitaDao extends JpaRepository<Cita, Long>  {
+public interface ICitaDao extends JpaRepository<Cita, Long>  {
 
 }

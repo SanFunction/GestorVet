@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Especie;
 
 @Repository
-public interface EspecieDao extends JpaRepository<Especie, Long>  {
+public interface IEspecieDao extends JpaRepository<Especie, Long>  {
 
 }

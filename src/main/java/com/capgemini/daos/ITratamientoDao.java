@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Tratamiento;
 
 @Repository
-public interface TratamientoDao extends JpaRepository<Tratamiento, Long>  {
+public interface ITratamientoDao extends JpaRepository<Tratamiento, Long>  {
 
 }

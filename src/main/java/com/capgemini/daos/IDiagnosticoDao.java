@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.entities.Diagnostico;
 
 @Repository
-public interface DiagnosticoDao extends JpaRepository<Diagnostico, Long>  {
+public interface IDiagnosticoDao extends JpaRepository<Diagnostico, Long>  {
 
 }
