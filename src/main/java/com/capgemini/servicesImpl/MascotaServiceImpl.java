@@ -16,7 +16,7 @@ public class MascotaServiceImpl implements IMascotaService{
 	private IMascotaDao mascotaDao;
 	
 	@Override
-	public List<Mascota> listaEspecie() {
+	public List<Mascota> listaMascota() {
 		// TODO Auto-generated method stub
 		return mascotaDao.findAll();
 	}

@@ -16,7 +16,7 @@ public class EspecieServiceImpl implements IEspecieService{
 	private IEspecieDao especieDao;
 	
 	@Override
-	public List<Especie> listaEspecie() {
+	public List<Especie> listaEspecies() {
 		// TODO Auto-generated method stub
 		return especieDao.findAll();
 	}

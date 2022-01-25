@@ -6,7 +6,7 @@ import com.capgemini.entities.Mascota;
 
 public interface IMascotaService {
 
-	public List<Mascota> listaEspecie();
+	public List<Mascota> listaMascota();
 	public Mascota getMascota(String id);
 	public void addMascota(Mascota mascotaNueva);
 	public void deleteMascota(Mascota mascotaBorrar);

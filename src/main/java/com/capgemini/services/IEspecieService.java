@@ -6,7 +6,7 @@ import com.capgemini.entities.Especie;
 
 public interface IEspecieService {
 
-	public List<Especie> listaEspecie();
+	public List<Especie> listaEspecies();
 	public Especie getEspecie(String id);
 	public void addEspecie(Especie especieNueva);
 	public void deleteEspecie(Especie especieBorrar);
