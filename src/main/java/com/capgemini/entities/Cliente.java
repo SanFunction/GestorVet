@@ -15,6 +15,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +29,6 @@ import lombok.NoArgsConstructor;
 @Table(name="cliente")
 public class Cliente implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -52,11 +52,13 @@ public class Cliente implements Serializable{
 	
 	@OneToMany(fetch =FetchType.LAZY,
 			cascade = CascadeType.MERGE, mappedBy ="cliente")
+	@JsonManagedReference
     private List<Cita> citas;
 	
 	
 	@OneToMany(fetch =FetchType.LAZY,
-			cascade = CascadeType.MERGE, mappedBy ="propietario")
+			cascade = CascadeType.MERGE, mappedBy ="cliente")
+	@JsonBackReference
     private List<Mascota> mascotas;
 	
 	

@@ -40,10 +40,6 @@ public class Veterinario implements Serializable{
 	@NotNull
 	@NotEmpty(message = "El campo no puede estar vacio")
 	private String apellidos;
-	
-	@OneToMany(mappedBy= "veterinario")
-	private List<Diagnostico> diagnosticos;
 
-	
 	
 }

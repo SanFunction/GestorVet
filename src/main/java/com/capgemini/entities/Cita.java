@@ -15,6 +15,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +46,7 @@ public class Cita implements Serializable{
 		
 		@NotNull
 		@NotEmpty(message = "El campo nombre no puede estar vacio")
+		@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
 		private Date fecha;
 		
 		@NotNull
@@ -49,8 +56,8 @@ public class Cita implements Serializable{
 		
 		@NotNull
 		@NotEmpty(message = "Debe seleccionar cliente")
-		@ManyToOne(fetch =FetchType.LAZY,
-		cascade = CascadeType.PERSIST)
+		@ManyToOne(cascade = CascadeType.PERSIST)
+		@JsonBackReference
 		private Cliente cliente;	
 	
 		

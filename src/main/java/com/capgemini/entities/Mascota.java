@@ -17,6 +17,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -59,24 +62,21 @@ public class Mascota implements Serializable {
 	@NotEmpty(message = "Debe indicar un peso")
 	private String peso;
 	
-	@NotNull
-	@NotEmpty(message = "Debe asignarse a una especie")
-	@ManyToOne
-	private Especie especie;
+	private String especie;
 	
 	private String foto;
 	
 	
-	@ManyToOne
-	private Expediente expediente;
-//	@OneToMany(mappedBy="mascota")
-//	private List<Expediente> expediente;
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE, mappedBy = "mascota")
+	@JsonBackReference
+	private List<Diagnostico> diagnostico;
 	
 	
 	@NotNull
 	@NotEmpty(message = "Debe seleccionar cliente")
 	@ManyToOne
-	private Cliente propietario;
+	@JsonManagedReference
+	private Cliente cliente;
 	
 
 }

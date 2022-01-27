@@ -36,6 +36,5 @@ public class Estado implements Serializable{
 	@Size(min = 4, max = 100, message = "El nombre entre 4 y 100 caracteres")
 	private String estado;
 	
-	@OneToMany(mappedBy = "estado")
-	private List<Expediente> expedientes;
+	
 }
