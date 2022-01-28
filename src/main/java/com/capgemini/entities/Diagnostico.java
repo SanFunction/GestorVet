@@ -40,7 +40,7 @@ public class Diagnostico implements Serializable {
 	private String enfermedad;
 
 	@ManyToOne
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Mascota mascota;
 
 	private String tratamiento;

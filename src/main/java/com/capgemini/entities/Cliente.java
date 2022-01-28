@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,28 +35,28 @@ public class Cliente implements Serializable{
 	private Long id;
 	
 	@NotNull
-	@NotEmpty(message = "El campo nombre no puede estar vacio")
+	//@NotEmpty(message = "El campo nombre no puede estar vacio")
 	@Size(min = 4, max = 100, message = "El nombre entre 4 y 100 caracteres")
 	private String nombre;
 	
 	@NotNull
-	@NotEmpty(message = "El campo apellidos no puede estar vacio")
+	//@NotEmpty(message = "El campo apellidos no puede estar vacio")
 	@Size(max = 255, message = "No puede exceder 255 caracteres")
 	private String descripcion;
 	
 	@NotNull
-	@NotEmpty(message = "Debe existir un numero")
+	//@NotEmpty(message = "Debe existir un numero")
 	@Size(max = 255, message = "Debe ser entre 6 y 9 digitos")
 	private String telefono;
 	
 	@OneToMany(fetch =FetchType.LAZY,
-			cascade = CascadeType.MERGE, mappedBy ="cliente")
-	@JsonManagedReference
+			cascade = CascadeType.PERSIST, mappedBy ="cliente")
+	//@JsonManagedReference
     private List<Cita> citas;
 	
 	
 	@OneToMany(fetch =FetchType.LAZY,
-			cascade = CascadeType.MERGE, mappedBy ="cliente")
+			cascade = CascadeType.PERSIST, mappedBy ="cliente")
 	@JsonBackReference
     private List<Mascota> mascotas;
 	

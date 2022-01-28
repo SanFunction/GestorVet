@@ -24,7 +24,7 @@ public class MascotaServiceImpl implements IMascotaService{
 	@Override
 	public Mascota getMascota(String id) {
 		// TODO Auto-generated method stub
-		return mascotaDao.getById(Long.parseLong(id));
+		return mascotaDao.findById(Long.parseLong(id)).get();
 	}
 
 	@Override

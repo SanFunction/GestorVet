@@ -67,7 +67,7 @@ public class Mascota implements Serializable {
 	private String foto;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE, mappedBy = "mascota")
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST, mappedBy = "mascota")
 	@JsonBackReference
 	private List<Diagnostico> diagnostico;
 	
@@ -75,7 +75,7 @@ public class Mascota implements Serializable {
 	@NotNull
 	@NotEmpty(message = "Debe seleccionar cliente")
 	@ManyToOne
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Cliente cliente;
 	
 

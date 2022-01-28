@@ -24,7 +24,7 @@ public class ClienteServiceImpl  implements IClienteService{
 	@Override
 	public Cliente getCliente(String id) {
 		// TODO Auto-generated method stub
-		return clienteDao.getById(Long.parseLong(id));
+		return clienteDao.findById(Long.parseLong(id)).get();
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class CitaServiceImpl implements ICitaService{
 	@Override
 	public Cita getCita(String id) {
 		// TODO Auto-generated method stub
-		return citaDao.getById(Long.parseLong(id));
+		return citaDao.findById(Long.parseLong(id)).get();
 	}
 
 	@Override
