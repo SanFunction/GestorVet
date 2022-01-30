@@ -55,7 +55,7 @@ public class Cliente implements Serializable{
 	@Size(max = 255, message = "Debe ser entre 6 y 9 digitos")
 	private String telefono;
 	
-	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.PERSIST,
+	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
 			mappedBy ="cliente")
 	@JsonManagedReference
     private List<Cita> citas;

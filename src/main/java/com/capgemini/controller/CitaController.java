@@ -158,7 +158,7 @@ public class CitaController {
 	// Método que actualiza una cita
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") Long id, @Valid @RequestBody Cita cita, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Cita cita, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		
@@ -180,24 +180,35 @@ public class CitaController {
 			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			
-			cita.setId(id);
+			Cita citaDB = citaService.getCita(id);
 			
-			Cita citaDB = citaService.addCita(cita);
-			
-			
-			if(citaDB != null) {
-				responseAsMap.put("cita", citaDB);				
+			if(cita.getId() == citaDB.getId()) {
+				citaService.deleteCita(citaDB);
+				cita.setId(Long.parseLong(id));
+				citaService.addCita(cita);
+				responseAsMap.put("cita", cita);				
 				responseAsMap.put("mensaje", "La cita con id " + citaDB.getId() + " se ha actualizado exitosamente!!!");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
-			}else {
+			} else{
 				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}			
+			}
+				
+			
+			
+//			cita.setId(id);
+//			
+//			Cita citaDB = citaService.addCita(cita);
+			
+				
 		} catch (DataAccessException e) {
 			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la cita");
 			responseAsMap.put("error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
-		}		
+		}	
+		
+		
+		
 		return responseEntity;
 		
 	}
