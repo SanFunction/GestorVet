@@ -129,7 +129,7 @@ public class ClienteController {
 	// ACTUALIZAR CLIENTE
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") Long id, @Valid @RequestBody Cliente cliente, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Cliente cliente, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		
@@ -149,17 +149,16 @@ public class ClienteController {
 		
 		try {
 			
-			cliente.setId(id);
-			
-			Cliente clienteDB = clienteService.addCliente(cliente);
-			
+			Cliente clienteDB = clienteService.getCliente(id);
 			
 			if(clienteDB != null) {
-				responseAsMap.put("Cliente", clienteDB);				
-				responseAsMap.put("mensaje", "El cliente con id " + clienteDB.getId() + " se ha actualizado exitosamente!!!");
+				cliente.setId(Long.parseLong(id));
+				clienteService.addCliente(cliente);
+				responseAsMap.put("cliente", cliente);				
+				responseAsMap.put("mensaje", "El cliente con id " + cliente.getId() + " se ha actualizado exitosamente!!!");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
-			}else {
-				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
+			} else{
+				responseAsMap.put("mensaje", "El cliente no se ha podido actualizar en la BD");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 		} catch (DataAccessException e) {

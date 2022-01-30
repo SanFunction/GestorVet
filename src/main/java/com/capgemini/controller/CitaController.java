@@ -124,12 +124,7 @@ public class CitaController {
 
 		return responseEntity;
 
-	}
-	
-	
-	
-	//actualizar un producto	
-	
+	}	
 	
 	//Borrado dando el id
 	@DeleteMapping("/{id}")
@@ -191,14 +186,7 @@ public class CitaController {
 			} else{
 				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-				
-			
-			
-//			cita.setId(id);
-//			
-//			Cita citaDB = citaService.addCita(cita);
-			
+			}			
 				
 		} catch (DataAccessException e) {
 			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la cita");
@@ -206,70 +194,8 @@ public class CitaController {
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 		
-		
-		
 		return responseEntity;
 		
 	}
-	
-	
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Cita cita, BindingResult result){
-//		
-//		Map<String, Object> responseAsMap = new HashMap<>();		
-//		ResponseEntity<Map<String, Object>> responseEntity = null;		
-//		List<String> errores = null; 
-//		
-//		if (result.hasErrors()) { 									
-//			errores = new ArrayList<>(); 			
-//			for( ObjectError error : result.getAllErrors()) { 
-//				errores.add(error.getDefaultMessage());
-//			}			
-//			
-//			responseAsMap.put("errores", errores);			
-//			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
-//			
-//			return responseEntity;
-//		}
-//		
-//		try {
-//			//MODIFICACION PARA QUE FUNCIONE EL PUT
-//			
-//			
-//			Cita citaDB = citaService.getCita(id);
-//			
-//			System.out.println(citaDB);
-//			
-//			if(cita.getId() == citaDB.getId()) {
-//				citaService.deleteCita(citaDB);
-//				cita.setId(Long.parseLong(id));
-//				//cita.setId(citaDB.getId());
-//				citaService.addCita(cita);
-//				responseAsMap.put("cita", cita);				
-//				responseAsMap.put("mensaje", "La cita con id " + citaDB.getId() + " se ha actualizado exitosamente!!!");
-//				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
-//			} else{
-//				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
-//				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
-//			}
-//				
-//			
-//			
-////			cita.setId(id);
-////			
-////			Cita citaDB = citaService.addCita(cita);
-//			
-//				
-//		} catch (DataAccessException e) {
-//			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la cita");
-//			responseAsMap.put("error", e.getMostSpecificCause());
-//			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
-//		}	
-//		
-//		
-//		
-//		return responseEntity;
-//		
-//	}
 
 }
