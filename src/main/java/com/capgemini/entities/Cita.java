@@ -62,7 +62,7 @@ public class Cita implements Serializable{
 		
 		
 		//@NotEmpty(message = "Debe seleccionar cliente")
-		@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.LAZY)
 		@JsonBackReference
 		@NotNull
 		private Cliente cliente;
