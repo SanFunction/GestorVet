@@ -28,9 +28,9 @@ public class MascotaServiceImpl implements IMascotaService{
 	}
 
 	@Override
-	public void addMascota(Mascota mascotaNueva) {
+	public Mascota addMascota(Mascota mascotaNueva) {
 		// TODO Auto-generated method stub
-		mascotaDao.save(mascotaNueva);
+		return mascotaDao.save(mascotaNueva);
 	}
 
 	@Override

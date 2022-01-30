@@ -28,9 +28,9 @@ public class EspecieServiceImpl implements IEspecieService{
 	}
 
 	@Override
-	public void addEspecie(Especie especieNueva) {
+	public Especie addEspecie(Especie especieNueva) {
 		// TODO Auto-generated method stub
-		especieDao.save(especieNueva);
+		return especieDao.save(especieNueva);
 	}
 
 	@Override

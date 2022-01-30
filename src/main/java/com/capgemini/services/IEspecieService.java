@@ -8,6 +8,6 @@ public interface IEspecieService {
 
 	public List<Especie> listaEspecies();
 	public Especie getEspecie(String id);
-	public void addEspecie(Especie especieNueva);
+	public Especie addEspecie(Especie especieNueva);
 	public void deleteEspecie(Especie especieBorrar);
 }

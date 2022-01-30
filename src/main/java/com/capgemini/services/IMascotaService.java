@@ -8,6 +8,6 @@ public interface IMascotaService {
 
 	public List<Mascota> listaMascota();
 	public Mascota getMascota(String id);
-	public void addMascota(Mascota mascotaNueva);
+	public Mascota addMascota(Mascota mascotaNueva);
 	public void deleteMascota(Mascota mascotaBorrar);
 }
