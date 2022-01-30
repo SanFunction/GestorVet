@@ -62,7 +62,7 @@ public class Cliente implements Serializable{
 	
 	
 	@OneToMany(fetch =FetchType.LAZY,
-			cascade = CascadeType.PERSIST, mappedBy ="cliente")
+			cascade = CascadeType.ALL, mappedBy ="cliente")
 	@JsonBackReference
     private List<Mascota> mascotas;
 	

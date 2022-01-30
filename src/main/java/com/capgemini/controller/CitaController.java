@@ -112,7 +112,7 @@ public class CitaController {
 						" se ha guardado exitosamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
-				responseAsMap.put("mensaje", "El producto no se ha podido guardar en la base de datos");
+				responseAsMap.put("mensaje", "La cita no se ha podido guardar en la base de datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {

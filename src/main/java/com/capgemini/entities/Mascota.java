@@ -42,7 +42,7 @@ public class Mascota implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@NotEmpty(message = "El campo nombre no puede estar vacio")
+	//@NotEmpty(message = "El campo nombre no puede estar vacio")
 	@Size(min = 4, max = 100, message = "El nombre entre 4 y 100 caracteres")
 	private String nombre;
 	
@@ -50,22 +50,21 @@ public class Mascota implements Serializable {
 	private String raza;
 	
 	@NotNull
-	@NotEmpty(message = "Debe indicar un color")
+	//@NotEmpty(message = "Debe indicar un color")
 	@Size(max = 255, message = "No puede exceder 255 caracteres")
 	private String color;
 	
 	@NotNull
-	@NotEmpty(message = "Se debe indicar edad")
+	//@NotEmpty(message = "Se debe indicar edad")
 	private String edad;
 	
 	@NotNull
-	@NotEmpty(message = "Debe indicar un peso")
+	//@NotEmpty(message = "Debe indicar un peso")
 	private String peso;
 	
 	private String especie;
 	
 	private String foto;
-	
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST, mappedBy = "mascota")
 	@JsonBackReference
@@ -73,9 +72,9 @@ public class Mascota implements Serializable {
 	
 	
 	@NotNull
-	@NotEmpty(message = "Debe seleccionar cliente")
+	//@NotEmpty(message = "Debe seleccionar cliente")
 	@ManyToOne
-	//@JsonManagedReference
+	@JsonManagedReference
 	private Cliente cliente;
 	
 
