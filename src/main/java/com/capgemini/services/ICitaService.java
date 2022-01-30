@@ -8,6 +8,6 @@ public interface ICitaService {
 
 	public List<Cita> listaCitas();
 	public Cita getCita(String id);
-	public void addCita(Cita citaNueva);
+	public Cita addCita(Cita citaNueva);
 	public void deleteCita(Cita citaBorrar);
 }

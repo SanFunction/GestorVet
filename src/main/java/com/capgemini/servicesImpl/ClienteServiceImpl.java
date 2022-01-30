@@ -28,9 +28,9 @@ public class ClienteServiceImpl  implements IClienteService{
 	}
 
 	@Override
-	public void addCliente(Cliente clienteNuevo) {
+	public Cliente addCliente(Cliente clienteNuevo) {
 		// TODO Auto-generated method stub
-		clienteDao.save(clienteNuevo);
+		return clienteDao.save(clienteNuevo);
 	}
 
 	@Override

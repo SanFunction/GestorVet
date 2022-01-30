@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,13 +75,13 @@ public class CitaController {
 		return responseEntity;
 	}
 	
-	//añadir un producto
+	//añadir una Cita
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Cita cita, BindingResult result){
 
 		Map<String, Object> responseAsMap = new HashMap<>();
 
-		ResponseEntity<Map<String,Object>> responseEntity = null;
+		ResponseEntity<Map<String,Object>> responseEntity=null;
 
 		List<String> errores = null;		
 
@@ -129,7 +130,7 @@ public class CitaController {
 	//actualizar un producto	
 	
 	
-	//dorrado dado el id
+	//Borrado dando el id
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cita> eliminar(@PathVariable(name = "id") String id){
 
@@ -152,6 +153,53 @@ public class CitaController {
 
 		return responseEntity;
 
+	}
+	
+	// Método que actualiza una cita
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") Long id, @Valid @RequestBody Cita cita, BindingResult result){
+		
+		Map<String, Object> responseAsMap = new HashMap<>();		
+		ResponseEntity<Map<String, Object>> responseEntity = null;		
+		List<String> errores = null; 
+		
+		if (result.hasErrors()) { 									
+			errores = new ArrayList<>(); 			
+			for( ObjectError error : result.getAllErrors()) { 
+				errores.add(error.getDefaultMessage());
+			}			
+			
+			responseAsMap.put("errores", errores);			
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			
+			return responseEntity;
+		}
+		
+		try {
+			//MODIFICACION PARA QUE FUNCIONE EL PUT
+			
+			
+			cita.setId(id);
+			
+			Cita citaDB = citaService.addCita(cita);
+			
+			
+			if(citaDB != null) {
+				responseAsMap.put("cita", citaDB);				
+				responseAsMap.put("mensaje", "La cita con id " + citaDB.getId() + " se ha actualizado exitosamente!!!");
+				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
+			}else {
+				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
+				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}			
+		} catch (DataAccessException e) {
+			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la cita");
+			responseAsMap.put("error", e.getMostSpecificCause());
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+		return responseEntity;
+		
 	}
 
 }

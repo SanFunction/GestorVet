@@ -28,9 +28,9 @@ public class CitaServiceImpl implements ICitaService{
 	}
 
 	@Override
-	public void addCita(Cita citaNueva) {
+	public Cita addCita(Cita citaNueva) {
 		// TODO Auto-generated method stub
-		citaDao.save(citaNueva);
+		return citaDao.save(citaNueva);
 	}
 
 	@Override

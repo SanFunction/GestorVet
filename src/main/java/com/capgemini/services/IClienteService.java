@@ -8,6 +8,6 @@ public interface IClienteService {
 
 	public List<Cliente> listaClientes();
 	public Cliente getCliente(String id);
-	public void addCliente(Cliente clienteNuevo);
+	public Cliente addCliente(Cliente clienteNuevo);
 	public void deleteCliente(Cliente clienteBorrar);
 }
