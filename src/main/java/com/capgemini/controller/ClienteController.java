@@ -24,9 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capgemini.entities.Cita;
 import com.capgemini.entities.Cliente;
-import com.capgemini.entities.Mascota;
 import com.capgemini.services.IClienteService;
 
 @RestController

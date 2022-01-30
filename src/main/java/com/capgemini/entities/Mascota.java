@@ -11,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -66,7 +64,7 @@ public class Mascota implements Serializable {
 	
 	private String foto;
 	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST, mappedBy = "mascota")
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "mascota")
 	@JsonBackReference
 	private List<Diagnostico> diagnostico;
 	
@@ -74,7 +72,8 @@ public class Mascota implements Serializable {
 	@NotNull
 	//@NotEmpty(message = "Debe seleccionar cliente")
 	@ManyToOne
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonBackReference(value = "masco-diag")
 	private Cliente cliente;
 	
 

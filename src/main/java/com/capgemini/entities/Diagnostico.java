@@ -1,18 +1,13 @@
 package com.capgemini.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,11 +31,13 @@ public class Diagnostico implements Serializable {
 	private Long id;
 
 	@NotNull
-	@NotEmpty(message = "El campo no puede estar vacio")
+	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String enfermedad;
 
-	@ManyToOne
-	@JsonManagedReference
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonManagedReference
+	@JsonBackReference(value = "masco-diag")
 	private Mascota mascota;
 
 	private String tratamiento;
