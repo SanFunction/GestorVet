@@ -1,6 +1,8 @@
 package com.capgemini.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,5 +45,8 @@ public class Diagnostico implements Serializable {
 	private String tratamiento;
 
 	private String veterinario;
-
+	
+	private Date fecha;
+	
+	private String estado;
 }
