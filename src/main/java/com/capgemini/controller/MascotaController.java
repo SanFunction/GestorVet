@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.entities.Diagnostico;
 import com.capgemini.entities.Mascota;
 import com.capgemini.services.IMascotaService;
 
@@ -69,6 +70,26 @@ public class MascotaController {
 			responseEntity = new ResponseEntity<Mascota>(mascota, HttpStatus.OK);
 		} else {
 			responseEntity = new ResponseEntity<Mascota>(HttpStatus.NO_CONTENT);
+		}
+		return responseEntity;
+	}
+	
+	//mostrar diagnosticos de una mascota dado el id de la mascota
+	@GetMapping("diagnostico/{id}")
+	public ResponseEntity<List<Diagnostico>> getDiagnosticosById(@PathVariable(name = "id") String id) {
+
+		ResponseEntity<List<Diagnostico>> responseEntity = null;
+
+		Mascota mascota = null;
+
+		mascota = mascotaService.getMascota(id);
+		
+		List<Diagnostico> diagnosticosMascota = mascota.getDiagnostico(); 
+
+		if (diagnosticosMascota != null) {
+			responseEntity = new ResponseEntity<List<Diagnostico>>(diagnosticosMascota, HttpStatus.OK);
+		} else {
+			responseEntity = new ResponseEntity<List<Diagnostico>>(HttpStatus.NO_CONTENT);
 		}
 		return responseEntity;
 	}
