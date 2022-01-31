@@ -75,6 +75,27 @@ public class CitaController {
 		return responseEntity;
 	}
 	
+	//obtener la citas odernadas por fecha
+	@GetMapping("/ordenadas/{id}")
+	public ResponseEntity<List<Cita>> citasOrdenas(@PathVariable(name = "id") String id) {
+
+		ResponseEntity<List<Cita>> responseEntity = null;
+
+		List<Cita> citas = null;
+
+		citas = citaService.listaCitas();
+		
+		//en proceso
+		
+
+		if (citas != null) {
+			responseEntity = new ResponseEntity<List<Cita>>(citas, HttpStatus.OK);
+		} else {
+			responseEntity = new ResponseEntity<List<Cita>>(HttpStatus.NO_CONTENT);
+		}
+		return responseEntity;
+	}
+	
 	//añadir una Cita
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Cita cita, BindingResult result){
