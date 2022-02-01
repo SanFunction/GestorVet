@@ -87,6 +87,7 @@ public class CitaController {
 		
 		//en proceso
 		
+		
 
 		if (citas != null) {
 			responseEntity = new ResponseEntity<List<Cita>>(citas, HttpStatus.OK);
