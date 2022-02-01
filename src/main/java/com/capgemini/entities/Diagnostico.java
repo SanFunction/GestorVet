@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,7 +32,7 @@ public class Diagnostico implements Serializable {
 	private Long id;
 
 	@NotNull
-	//@NotEmpty(message = "El campo no puede estar vacio")
+	@NotEmpty(message = "El campo no puede estar vacio")
 	private String enfermedad;
 
 	@NotNull

@@ -9,9 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -45,17 +45,17 @@ public class Cita implements Serializable{
 		private Long id;
 		
 		@NotNull
-		//@NotEmpty(message = "El campo nombre no puede estar vacio")
+		@NotEmpty(message = "El campo nombre no puede estar vacio")
 		@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
 		private Date fecha;
 		
 		@NotNull
-		//@NotEmpty(message = "El campo  no puede estar vacio")
+		@NotEmpty(message = "El campo  no puede estar vacio")
 		@Size(max = 255, message = "No puede exceder 255 caracteres")
 		private String anotaciones;
 		
 		
-		//@NotEmpty(message = "Debe seleccionar cliente")
+		@NotEmpty(message = "Debe seleccionar cliente")
 		@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 		@JsonBackReference
 		@NotNull
