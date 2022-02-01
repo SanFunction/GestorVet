@@ -112,9 +112,7 @@ public class MascotaController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
-			responseAsMap.put("errores", errores);
+			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
@@ -125,18 +123,18 @@ public class MascotaController {
 		try {
 			if(mascota != null) {
 				mascotaService.addMascota(mascota);
-				responseAsMap.put("mascota", mascota);
-				responseAsMap.put("mensaje", "La mascota con id " + mascota.getId() + 
-						" se ha guardado exitosamente");
+				responseAsMap.put("Mascota", mascota);
+				responseAsMap.put("Mensaje", "La mascota: " + mascota.getNombre() + 
+						" se ha guardado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
-				responseAsMap.put("mensaje", "La mascota no se ha podido guardar en la base de datos");
+				responseAsMap.put("Mensaje", "La mascota no se ha podido guardar en la base de datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
 			// TODO: handle exception
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido guadar la mascota");
-			responseAsMap.put("error", e.getMostSpecificCause());
+			responseAsMap.put("Mensaje", "Error! no se ha podido guadar la mascota");
+			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -158,7 +156,7 @@ public class MascotaController {
 				errores.add(error.getDefaultMessage());
 			}			
 			
-			responseAsMap.put("errores", errores);			
+			responseAsMap.put("Errores", errores);			
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
 			
 			return responseEntity;
@@ -172,17 +170,17 @@ public class MascotaController {
 			if(mascotaDB != null) {
 				mascota.setId(Long.parseLong(id));
 				mascotaService.addMascota(mascota);
-				responseAsMap.put("mascota", mascota);				
-				responseAsMap.put("mensaje", "La mascota con id " + mascota.getId() + " se ha actualizado exitosamente!!!");
+				responseAsMap.put("Mascota", mascota);				
+				responseAsMap.put("Mensaje", "La mascota: " + mascota.getNombre() + " se ha actualizado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
 			} else{
-				responseAsMap.put("mensaje", "La mascota no se ha podido actualizar en la BD");
+				responseAsMap.put("Mensaje", "La mascota no se ha podido actualizar en la Base de Datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 				
 		} catch (DataAccessException e) {
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la mascota");
-			responseAsMap.put("error", e.getMostSpecificCause());
+			responseAsMap.put("Mensaje", "Error! no se ha podido actualizar la mascota");
+			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 		

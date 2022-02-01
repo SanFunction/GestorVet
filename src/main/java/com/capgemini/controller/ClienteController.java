@@ -94,7 +94,7 @@ public class ClienteController {
 
 			// salimos informando al qu erealizo la peticion (request) de los errores
 			// que han tenido lugar
-			responseAsMap.put("errores", errores);
+			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
@@ -105,18 +105,18 @@ public class ClienteController {
 		try {
 			if(cliente != null) {
 				clienteService.addCliente(cliente);
-				responseAsMap.put("cliente", cliente);
-				responseAsMap.put("mensaje", "El cliente con id " + cliente.getId() + 
-						" se ha guardado exitosamente");
+				responseAsMap.put("Cliente", cliente);
+				responseAsMap.put("Mensaje", "El cliente :" + cliente.getNombre() + 
+						" se ha guardado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
-				responseAsMap.put("mensaje", "El cliente no se ha podido guardar en la base de datos");
+				responseAsMap.put("Mensaje", "El cliente no se ha podido guardar en la base de datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
 			// TODO: handle exception
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido guadar el cliente");
-			responseAsMap.put("error", e.getMostSpecificCause());
+			responseAsMap.put("Mensaje", "Error! no se ha podido guadar el cliente");
+			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -152,16 +152,16 @@ public class ClienteController {
 			if(clienteDB != null) {
 				cliente.setId(Long.parseLong(id));
 				clienteService.addCliente(cliente);
-				responseAsMap.put("cliente", cliente);				
-				responseAsMap.put("mensaje", "El cliente con id " + cliente.getId() + " se ha actualizado exitosamente!!!");
+				responseAsMap.put("Cliente", cliente);				
+				responseAsMap.put("Mensaje", "El cliente: " + cliente.getNombre() + " se ha actualizado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
 			} else{
-				responseAsMap.put("mensaje", "El cliente no se ha podido actualizar en la BD");
+				responseAsMap.put("Mensaje", "El cliente no se ha podido actualizar en la Base de Datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 		} catch (DataAccessException e) {
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar el cliente");
-			responseAsMap.put("error", e.getMostSpecificCause());
+			responseAsMap.put("Mensaje", "Error! no se ha podido actualizar el cliente");
+			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
 		return responseEntity;
