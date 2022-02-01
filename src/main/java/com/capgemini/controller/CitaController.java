@@ -87,7 +87,15 @@ public class CitaController {
 		
 		//en proceso
 		
+		List<Cita> citaLista = new ArrayList<>();
 		
+		citaLista = citas;
+	
+		citaLista.sort((o1, o2) -> o1.getFecha().compareTo(o2.getFecha()));
+		
+//		citaLista.add(citaService);
+//		
+//		citaLista.stream().filter(x => x.get)
 
 		if (citas != null) {
 			responseEntity = new ResponseEntity<List<Cita>>(citas, HttpStatus.OK);
