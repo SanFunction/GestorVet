@@ -128,8 +128,7 @@ public class CitaController {
 			if(cita != null) {
 				citaService.addCita(cita);
 				responseAsMap.put("cita", cita);
-				responseAsMap.put("mensaje", "La cita con id " + cita.getId() + 
-						" se ha guardado exitosamente");
+				responseAsMap.put("mensaje", "La cita se ha añadido correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
 				responseAsMap.put("mensaje", "La cita no se ha podido guardar en la base de datos");
@@ -137,7 +136,7 @@ public class CitaController {
 			}
 		} catch (DataAccessException e) {
 			// TODO: handle exception
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido guadar la cita");
+			responseAsMap.put("mensaje", "Error! no se ha podido guadar la cita");
 			responseAsMap.put("error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -201,16 +200,16 @@ public class CitaController {
 				cita.setId(Long.parseLong(id));
 				citaService.addCita(cita);
 				responseAsMap.put("cita", cita);				
-				responseAsMap.put("mensaje", "La cita con id " + cita.getId() + " se ha actualizado exitosamente!!!");
+				responseAsMap.put("Mensaje", "La cita se ha actualizado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
 			} else{
-				responseAsMap.put("mensaje", "La cita no se ha podido actualizar en la BD");
+				responseAsMap.put("Mensaje", "La cita no se ha podido actualizar en la BD");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 				
 		} catch (DataAccessException e) {
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar la cita");
-			responseAsMap.put("error", e.getMostSpecificCause());
+			responseAsMap.put("Mensaje", "Error! no se ha podido actualizar la cita");
+			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 		

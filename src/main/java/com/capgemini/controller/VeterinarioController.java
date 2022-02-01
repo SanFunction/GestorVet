@@ -95,7 +95,7 @@ public class VeterinarioController {
 
 			// salimos informando al qu erealizo la peticion (request) de los errores
 			// que han tenido lugar
-			responseAsMap.put("errores", errores);
+			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
@@ -107,11 +107,11 @@ public class VeterinarioController {
 			if(veterinario != null) {
 				veterinarioService.addVeterinario(veterinario);
 				responseAsMap.put("Veterinario", veterinario);
-				responseAsMap.put("mensaje", "El Veterinario con id " +veterinario.getId() + 
-						" se ha guardado exitosamente");
+				responseAsMap.put("mensaje", "El Veterinario: " +veterinario.getNombre() + 
+						" se ha guardado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
-				responseAsMap.put("mensaje", "El veterinario no se ha podido guardar en la base de datos");
+				responseAsMap.put("Mensaje", "El veterinario no se ha podido guardar en la base de datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
@@ -180,15 +180,15 @@ public class VeterinarioController {
 				veterinario.setId(Long.parseLong(id));
 				veterinarioService.addVeterinario(veterinario);
 				responseAsMap.put("Veterinario", veterinario);				
-				responseAsMap.put("mensaje", "El Veterinario con id " + veterinario.getId() + " se ha actualizado exitosamente!!!");
+				responseAsMap.put("mensaje", "El Veterinario: " + veterinario.getNombre() + " se ha actualizado exitosamente!!!");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
 			} else{
-				responseAsMap.put("mensaje", "El Veterinario no se ha podido actualizar en la BD");
+				responseAsMap.put("mensaje", "El Veterinario no se ha podido actualizar en la Base de Datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 				
 		} catch (DataAccessException e) {
-			responseAsMap.put("mensaje", "Error fatal, no se ha podido actualizar el Veterinario");
+			responseAsMap.put("mensaje", "Error! no se ha podido actualizar el Veterinario");
 			responseAsMap.put("error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	

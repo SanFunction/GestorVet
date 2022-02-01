@@ -91,7 +91,7 @@ public class DiagnosticoController {
 			for (ObjectError error : result.getAllErrors()) {
 				errores.add(error.getDefaultMessage());
 			}
-			responseAsMap.put("errores", errores);
+			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
@@ -103,16 +103,15 @@ public class DiagnosticoController {
 			if(diagnostico != null) {
 				diagnosticoService.addDiagnostico(diagnostico);
 				responseAsMap.put("Diagnostico", diagnostico);
-				responseAsMap.put("mensaje", "El diagnostico con id " + diagnostico.getId() + 
-						" se ha guardado exitosamente");
+				responseAsMap.put("Mensaje", "El diagnostico se ha guardado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.OK);
 			} else {
-				responseAsMap.put("Error al persistir con el guardado:", "El diagnostico no se ha podido guardar en la base de datos");
+				responseAsMap.put("Error con el guardado:", "El diagnostico no se ha podido guardar en la base de datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
 			// TODO: handle exception
-			responseAsMap.put("Mensaje", "Error fatal, no se ha podido guadar la cita");
+			responseAsMap.put("Mensaje", "Error! no se ha podido guadar la cita");
 			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -161,7 +160,7 @@ public class DiagnosticoController {
 				errores.add(error.getDefaultMessage());
 			}			
 			
-			responseAsMap.put("errores", errores);			
+			responseAsMap.put("Errores", errores);			
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
@@ -175,15 +174,15 @@ public class DiagnosticoController {
 				diagnostico.setId(Long.parseLong(id));
 				diagnosticoService.addDiagnostico(diagnostico);
 				responseAsMap.put("Diagnostico", diagnostico);				
-				responseAsMap.put("Mensaje", "El diagnostico con id " + diagnostico.getId() + " se ha actualizado exitosamente!!!");
+				responseAsMap.put("Mensaje", "El diagnostico se ha actualizado correctamente");
 				responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.OK);
 			} else{
-				responseAsMap.put("Mensaje", "El diagnostico no se ha podido actualizar en la BD");
+				responseAsMap.put("Mensaje", "El diagnostico no se ha podido actualizar en la Base de Datos");
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}			
 				
 		} catch (DataAccessException e) {
-			responseAsMap.put("Mensaje", "Error fatal, no se ha podido actualizar el diagnostico");
+			responseAsMap.put("Mensaje", "Error! no se ha podido actualizar el diagnostico");
 			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
