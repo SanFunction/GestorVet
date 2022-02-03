@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "diagnostico")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Diagnostico implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,9 +39,7 @@ public class Diagnostico implements Serializable {
 	private String enfermedad;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	//@JsonManagedReference
-	@JsonBackReference(value = "masco-diag")
+	@ManyToOne
 	private Mascota mascota;
 
 	private String tratamiento;

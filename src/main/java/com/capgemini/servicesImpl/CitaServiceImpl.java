@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.daos.ICitaDao;
+import com.capgemini.daos.IClienteDao;
 import com.capgemini.entities.Cita;
+import com.capgemini.entities.Cliente;
 import com.capgemini.services.ICitaService;
+import com.capgemini.services.IClienteService;
 
 @Service
 public class CitaServiceImpl implements ICitaService{
@@ -38,5 +41,6 @@ public class CitaServiceImpl implements ICitaService{
 		// TODO Auto-generated method stub
 		citaDao.delete(citaBorrar);
 	}
+
 
 }

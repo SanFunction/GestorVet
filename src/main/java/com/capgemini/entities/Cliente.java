@@ -16,7 +16,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="cliente")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Cliente implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -52,13 +56,11 @@ public class Cliente implements Serializable{
 	
 	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
 			mappedBy ="cliente")
-	@JsonManagedReference
     private List<Cita> citas;
 	
 	
 	@OneToMany(fetch =FetchType.LAZY,
 			cascade = CascadeType.ALL, mappedBy ="cliente")
-	@JsonBackReference
     private List<Mascota> mascotas;
 	
 	

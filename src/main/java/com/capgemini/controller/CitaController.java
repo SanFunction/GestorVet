@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Cita;
+import com.capgemini.entities.Cliente;
 import com.capgemini.services.ICitaService;
 
 @RestController
@@ -45,7 +46,7 @@ public class CitaController {
 		List<Cita> citas = null;
 
 		citas = citaService.listaCitas();
-
+		
 		if (citas.size() > 0) {
 
 			responseEntity = new ResponseEntity<List<Cita>>(citas, HttpStatus.OK);
@@ -84,8 +85,6 @@ public class CitaController {
 		List<Cita> citas = null;
 
 		citas = citaService.listaCitas();
-		
-		//en proceso
 		
 		List<Cita> citaLista = new ArrayList<>();
 		
