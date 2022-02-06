@@ -53,17 +53,17 @@ public class Cita implements Serializable{
 		private Long id;
 		
 		@NotNull
-		@NotEmpty(message = "El campo nombre no puede estar vacio")
-		@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
+		//@NotEmpty(message = "El campo nombre no puede estar vacio")
+		//@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
 		private Date fecha;
 		
 		@NotNull
-		@NotEmpty(message = "El campo  no puede estar vacio")
+		//@NotEmpty(message = "El campo  no puede estar vacio")
 		@Size(max = 255, message = "No puede exceder 255 caracteres")
 		private String anotaciones;
 		
 		
-		@NotEmpty(message = "Debe seleccionar cliente")
+		//@NotEmpty(message = "Debe seleccionar cliente")
 		@ManyToOne
 		@NotNull
 		private Cliente cliente;

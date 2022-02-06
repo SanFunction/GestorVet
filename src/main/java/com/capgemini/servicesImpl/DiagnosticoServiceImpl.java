@@ -24,7 +24,7 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
 	@Override
 	public Diagnostico getDiagnostico(String id) {
 
-		return diagnosticoDAO.getById(Long.parseLong(id));
+		return diagnosticoDAO.findById(Long.parseLong(id)).get();
 	}
 
 	@Override
