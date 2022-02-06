@@ -33,7 +33,7 @@ public class Diagnostico implements Serializable {
 	private Long id;
 
 	@NotNull
-	@NotEmpty(message = "El campo no puede estar vacio")
+	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String enfermedad;
 
 	@NotNull

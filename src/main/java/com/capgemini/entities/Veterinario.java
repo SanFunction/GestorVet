@@ -36,11 +36,11 @@ public class Veterinario implements Serializable{
 	private Long id;
 	
 	@NotNull
-	@NotEmpty(message = "El campo no puede estar vacio")
+	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String nombre;
 	
 	@NotNull
-	@NotEmpty(message = "El campo no puede estar vacio")
+	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String apellidos;
 	
 	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
