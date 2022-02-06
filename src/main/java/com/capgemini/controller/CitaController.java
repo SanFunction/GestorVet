@@ -106,7 +106,7 @@ public class CitaController {
 	
 	//añadir una Cita
 	@PostMapping
-	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Cita cita, BindingResult result){
+	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Cita cita, BindingResult result){
 
 		Map<String, Object> responseAsMap = new HashMap<>();
 
@@ -181,7 +181,7 @@ public class CitaController {
 	// Método que actualiza una cita
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Cita cita, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Cita cita, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		

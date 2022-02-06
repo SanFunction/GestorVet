@@ -101,7 +101,7 @@ public class MascotaController {
 	
 	//añadir una mascota
 	@PostMapping
-	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Mascota mascota, BindingResult result){
+	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Mascota mascota, BindingResult result){
 
 		Map<String, Object> responseAsMap = new HashMap<>();
 
@@ -149,7 +149,7 @@ public class MascotaController {
 	
 	//actualizar una mascota
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Mascota mascota, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Mascota mascota, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		

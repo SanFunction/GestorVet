@@ -76,7 +76,7 @@ public class DiagnosticoController {
 	
 	//añadir una Cita
 	@PostMapping
-	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Diagnostico diagnostico, BindingResult result){
+	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Diagnostico diagnostico, BindingResult result){
 
 		Map<String, Object> responseAsMap = new HashMap<>();
 
@@ -148,7 +148,7 @@ public class DiagnosticoController {
 	// Método que actualiza una cita
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Diagnostico diagnostico, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Diagnostico diagnostico, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		

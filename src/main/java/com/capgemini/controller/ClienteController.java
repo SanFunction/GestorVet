@@ -78,7 +78,7 @@ public class ClienteController {
 	
 	//añadir un Cliente
 	@PostMapping
-	public ResponseEntity<Map<String,Object>> guardar(@Valid @RequestBody Cliente cliente, BindingResult result){
+	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Cliente cliente, BindingResult result){
 
 		Map<String, Object> responseAsMap = new HashMap<>();
 
@@ -129,7 +129,7 @@ public class ClienteController {
 	// ACTUALIZAR CLIENTE
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @Valid @RequestBody Cliente cliente, BindingResult result){
+	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Cliente cliente, BindingResult result){
 		
 		Map<String, Object> responseAsMap = new HashMap<>();		
 		ResponseEntity<Map<String, Object>> responseEntity = null;		
