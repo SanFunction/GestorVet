@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.entities.Cliente;
 import com.capgemini.entities.Diagnostico;
 import com.capgemini.entities.Mascota;
+import com.capgemini.services.IClienteService;
 import com.capgemini.services.IMascotaService;
 
 @RestController
@@ -35,6 +37,9 @@ public class MascotaController {
 
 	@Autowired
 	private IMascotaService mascotaService;
+	
+	@Autowired
+	private IClienteService clienteService;
 
 	@GetMapping
 	@Transactional(readOnly = true)
