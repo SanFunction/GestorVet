@@ -54,7 +54,7 @@ public class Cita implements Serializable{
 		
 		@NotNull
 		//@NotEmpty(message = "El campo nombre no puede estar vacio")
-		//@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
+		@DateTimeFormat(iso = ISO.DATE, fallbackPatterns = { "M/d/yy", "dd.MM.yyyy" })
 		private Date fecha;
 		
 		@NotNull
