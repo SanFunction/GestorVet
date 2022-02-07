@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
@@ -48,7 +49,7 @@ public class Veterinario implements Serializable{
 	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String apellidos;
 	
-	@JsonBackReference
+	@JsonManagedReference(value = "db")
 	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
 			mappedBy ="veterinario")
     private List<Diagnostico> diagnostico;
