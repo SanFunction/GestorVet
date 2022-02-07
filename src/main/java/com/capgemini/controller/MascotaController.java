@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -24,10 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capgemini.entities.Cliente;
 import com.capgemini.entities.Diagnostico;
 import com.capgemini.entities.Mascota;
-import com.capgemini.services.IClienteService;
 import com.capgemini.services.IMascotaService;
 
 @RestController
@@ -37,9 +33,6 @@ public class MascotaController {
 
 	@Autowired
 	private IMascotaService mascotaService;
-	
-	@Autowired
-	private IClienteService clienteService;
 
 	@GetMapping
 	@Transactional(readOnly = true)

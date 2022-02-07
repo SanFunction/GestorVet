@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="veterinario")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Veterinario implements Serializable{
 
 	/**
@@ -43,6 +48,7 @@ public class Veterinario implements Serializable{
 	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String apellidos;
 	
+	@JsonBackReference
 	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
 			mappedBy ="veterinario")
     private List<Diagnostico> diagnostico;
