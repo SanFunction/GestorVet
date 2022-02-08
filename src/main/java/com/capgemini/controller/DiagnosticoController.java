@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Diagnostico;
+import com.capgemini.entities.Veterinario;
 import com.capgemini.services.IDiagnosticoService;
+import com.capgemini.services.IVeterinarioService;
 
 @RestController
 @RequestMapping(value = "/diagnostico")
@@ -34,6 +36,9 @@ public class DiagnosticoController {
 	
 	@Autowired
 	private IDiagnosticoService diagnosticoService;
+
+	@Autowired
+	private IVeterinarioService veterinarioService;
 	
 	@GetMapping
 	@Transactional(readOnly = true)
@@ -70,6 +75,25 @@ public class DiagnosticoController {
 			responseEntity = new ResponseEntity<Diagnostico>(diagnostico, HttpStatus.OK);
 		} else {
 			responseEntity = new ResponseEntity<Diagnostico>(HttpStatus.NO_CONTENT);
+		}
+		return responseEntity;
+	}
+	
+	@GetMapping("/veterinario/{id}")
+	public ResponseEntity<Veterinario> getVeterianarioDiagnostico(@PathVariable(name = "id") String id) {
+
+		ResponseEntity<Veterinario> responseEntity = null;
+
+		Diagnostico diagnostico= diagnosticoService.getDiagnostico(id);
+		
+		Long index = diagnostico.getVeterinario().getId();
+		
+		Veterinario veterinario=veterinarioService.getVeterinario(index.toString());
+
+		if (veterinario != null) {
+			responseEntity = new ResponseEntity<Veterinario>(veterinario, HttpStatus.OK);
+		} else {
+			responseEntity = new ResponseEntity<Veterinario>(HttpStatus.NO_CONTENT);
 		}
 		return responseEntity;
 	}
