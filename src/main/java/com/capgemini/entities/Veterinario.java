@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="veterinario")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope=Veterinario.class)
 public class Veterinario implements Serializable{
 
 	/**
@@ -50,6 +50,7 @@ public class Veterinario implements Serializable{
 	private String apellidos;
 	
 	@JsonManagedReference(value = "db")
+	//@JsonBackReference
 	@OneToMany(fetch =FetchType.LAZY,cascade = CascadeType.ALL,
 			mappedBy ="veterinario")
     private List<Diagnostico> diagnostico;

@@ -39,7 +39,7 @@ import lombok.NoArgsConstructor;
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope=Cita.class)
 public class Cita implements Serializable{
 
 
