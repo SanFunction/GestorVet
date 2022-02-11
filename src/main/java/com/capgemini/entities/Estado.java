@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,7 +28,6 @@ public class Estado implements Serializable{
 	private Long id;
 	
 	@NotNull
-	//@NotEmpty(message = "El campo no puede estar vacio")
 	@Size(min = 4, max = 100, message = "El nombre entre 4 y 100 caracteres")
 	private String estado;
 	

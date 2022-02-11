@@ -3,7 +3,6 @@ package com.capgemini.services;
 import java.util.List;
 
 import com.capgemini.entities.Cita;
-import com.capgemini.entities.Cliente;
 
 public interface ICitaService {
 

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -57,7 +55,6 @@ public class VeterinarioController {
 	}
 	
 	//BUSQUEDA DE VETERINARIO POR ID
-	
 	@GetMapping("/{id}")
 	public ResponseEntity<Veterinario> findById(@PathVariable(name = "id") String id) {
 
@@ -75,7 +72,7 @@ public class VeterinarioController {
 		return responseEntity;
 	}
 	
-	//añadir una Cita
+	//añadir un veterinario
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Veterinario veterinario, BindingResult result){
 
@@ -93,15 +90,11 @@ public class VeterinarioController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
 			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
 		}
-
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
 
 		try {
 			if(veterinario != null) {
@@ -166,13 +159,12 @@ public class VeterinarioController {
 			}			
 			
 			responseAsMap.put("errores", errores);			
-			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Veterinario veterinarioDB = veterinarioService.getVeterinario(id);
 			

@@ -161,7 +161,6 @@ public class MascotaController {
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Mascota mascotaDB = mascotaService.getMascota(id);
 			

@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.text.View;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Cliente;
 import com.capgemini.services.IClienteService;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping(value = "/cliente")
@@ -94,15 +90,11 @@ public class ClienteController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
 			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
 		}
-
-		// BLOQUE TRY CATH 
 
 		try {
 			if(cliente != null) {
@@ -127,7 +119,6 @@ public class ClienteController {
 	}
 	
 	// ACTUALIZAR CLIENTE
-	
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Cliente cliente, BindingResult result){
 		
@@ -171,7 +162,6 @@ public class ClienteController {
 	}
 	
 	//Borrado dando el ID
-	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cliente> eliminar(@PathVariable(name = "id") String id){
 

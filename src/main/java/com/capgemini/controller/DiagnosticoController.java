@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -61,7 +59,7 @@ public class DiagnosticoController {
 		return responseEntity ;
 	}
 	
-	//busqueda de un producto en concreto por el id
+	//busqueda de un diagnostico en concreto por el id
 	@GetMapping("/{id}")
 	public ResponseEntity<Diagnostico> findById(@PathVariable(name = "id") String id) {
 
@@ -98,7 +96,7 @@ public class DiagnosticoController {
 		return responseEntity;
 	}
 	
-	//añadir una Cita
+	//añadir un veterinario
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Diagnostico diagnostico, BindingResult result){
 
@@ -120,8 +118,6 @@ public class DiagnosticoController {
 
 			return responseEntity;
 		}
-
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
 
 		try {
 			if(diagnostico != null) {
@@ -169,7 +165,7 @@ public class DiagnosticoController {
 
 	}
 	
-	// Método que actualiza una cita
+	// Método que actualiza un diagnostico
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Diagnostico diagnostico, BindingResult result){
@@ -191,7 +187,7 @@ public class DiagnosticoController {
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
+			
 			Diagnostico diagnosticoDB = diagnosticoService.getDiagnostico(id);
 			
 			if(diagnosticoDB != null) {
