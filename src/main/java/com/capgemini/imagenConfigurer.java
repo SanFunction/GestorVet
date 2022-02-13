@@ -13,7 +13,7 @@ public class imagenConfigurer implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 		
 		// con esto registramos el recurso que hemos creado para que muestre imagenes
-		registry.addResourceHandler("/Recursos/**").addResourceLocations("file:"+"/home/curso/Mascota/Recursos/");
+		registry.addResourceHandler("/Recursos/**").addResourceLocations("file:"+"/home/curso/git/GestorVet/src/main/resources/static/mascotas");
 	}
 	
 }
