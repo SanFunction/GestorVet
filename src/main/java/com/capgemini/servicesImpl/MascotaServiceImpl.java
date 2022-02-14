@@ -17,25 +17,21 @@ public class MascotaServiceImpl implements IMascotaService{
 	
 	@Override
 	public List<Mascota> listaMascota() {
-		// TODO Auto-generated method stub
 		return mascotaDao.findAll();
 	}
 
 	@Override
 	public Mascota getMascota(String id) {
-		// TODO Auto-generated method stub
 		return mascotaDao.findById(Long.parseLong(id)).get();
 	}
 
 	@Override
 	public Mascota addMascota(Mascota mascotaNueva) {
-		// TODO Auto-generated method stub
 		return mascotaDao.save(mascotaNueva);
 	}
 
 	@Override
 	public void deleteMascota(Mascota mascotaBorrar) {
-		// TODO Auto-generated method stub
 		mascotaDao.delete(mascotaBorrar);
 	}
 

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -35,6 +33,7 @@ public class VeterinarioController {
 	@Autowired
 	private IVeterinarioService veterinarioService;
 	
+	//Pedimos una lista de veterinarios
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Veterinario>> findAll(){
@@ -56,8 +55,7 @@ public class VeterinarioController {
 		return responseEntity ;
 	}
 	
-	//BUSQUEDA DE VETERINARIO POR ID
-	
+	//Pedimos un veterinario concreto
 	@GetMapping("/{id}")
 	public ResponseEntity<Veterinario> findById(@PathVariable(name = "id") String id) {
 
@@ -75,7 +73,7 @@ public class VeterinarioController {
 		return responseEntity;
 	}
 	
-	//añadir una Cita
+	//Añadimos un veterinario
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Veterinario veterinario, BindingResult result){
 
@@ -93,15 +91,11 @@ public class VeterinarioController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
 			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
 		}
-
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
 
 		try {
 			if(veterinario != null) {
@@ -115,7 +109,6 @@ public class VeterinarioController {
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseAsMap.put("Mensaje", "Error fatal, no se ha podido guadar el veterinario");
 			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -125,7 +118,7 @@ public class VeterinarioController {
 
 	}	
 	
-	//Borrado dando el id
+	//Borrar un veterinario
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Veterinario> eliminar(@PathVariable(name = "id") String id){
 
@@ -142,16 +135,14 @@ public class VeterinarioController {
 			}
 	
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseEntity = new ResponseEntity<Veterinario>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		return responseEntity;
 
 	}
-	
-	// Método que actualiza una cita
-	
+
+	//Actualizamos un veterinario
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Veterinario veterinario, BindingResult result){
 		
@@ -166,13 +157,12 @@ public class VeterinarioController {
 			}			
 			
 			responseAsMap.put("errores", errores);			
-			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Veterinario veterinarioDB = veterinarioService.getVeterinario(id);
 			

@@ -17,25 +17,21 @@ public class EspecieServiceImpl implements IEspecieService{
 	
 	@Override
 	public List<Especie> listaEspecies() {
-		// TODO Auto-generated method stub
 		return especieDao.findAll();
 	}
 
 	@Override
 	public Especie getEspecie(String id) {
-		// TODO Auto-generated method stub
 		return especieDao.getById(Long.parseLong(id));
 	}
 
 	@Override
 	public Especie addEspecie(Especie especieNueva) {
-		// TODO Auto-generated method stub
 		return especieDao.save(especieNueva);
 	}
 
 	@Override
 	public void deleteEspecie(Especie especieBorrar) {
-		// TODO Auto-generated method stub
 		especieDao.delete(especieBorrar);
 	}
 

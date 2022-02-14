@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -40,6 +38,7 @@ public class DiagnosticoController {
 	@Autowired
 	private IVeterinarioService veterinarioService;
 	
+	// Pedimos lista de los diagnosticos
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Diagnostico>> findAll(){
@@ -61,7 +60,7 @@ public class DiagnosticoController {
 		return responseEntity ;
 	}
 	
-	//busqueda de un producto en concreto por el id
+	// Pedimos un diagnostico en concreto
 	@GetMapping("/{id}")
 	public ResponseEntity<Diagnostico> findById(@PathVariable(name = "id") String id) {
 
@@ -79,6 +78,7 @@ public class DiagnosticoController {
 		return responseEntity;
 	}
 	
+	//Pedimos el veterinario asociado a un diagnostico
 	@GetMapping("/veterinario/{id}")
 	public ResponseEntity<Veterinario> getVeterianarioDiagnostico(@PathVariable(name = "id") String id) {
 
@@ -98,7 +98,7 @@ public class DiagnosticoController {
 		return responseEntity;
 	}
 	
-	//añadir una Cita
+	//Añadimos un diagnostico
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Diagnostico diagnostico, BindingResult result){
 
@@ -121,8 +121,6 @@ public class DiagnosticoController {
 			return responseEntity;
 		}
 
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
-
 		try {
 			if(diagnostico != null) {
 				diagnosticoService.addDiagnostico(diagnostico);
@@ -144,7 +142,7 @@ public class DiagnosticoController {
 
 	}	
 	
-	//Borrado dando el id
+	//Borramos un diagnostico
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Diagnostico> eliminar(@PathVariable(name = "id") String id){
 
@@ -161,7 +159,6 @@ public class DiagnosticoController {
 			}
 	
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseEntity = new ResponseEntity<Diagnostico>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -169,8 +166,7 @@ public class DiagnosticoController {
 
 	}
 	
-	// Método que actualiza una cita
-	
+	// Actualizamos un diagnostico
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Diagnostico diagnostico, BindingResult result){
 		

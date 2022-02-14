@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Cita;
-import com.capgemini.entities.Cliente;
 import com.capgemini.services.ICitaService;
 
 @RestController
@@ -36,7 +33,7 @@ public class CitaController {
 	@Autowired
 	private ICitaService citaService;
 
-	//listado completo de los elementos
+	//Pedimos una lista de las citas
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Cita>> findAll() {
@@ -58,7 +55,7 @@ public class CitaController {
 		return responseEntity;
 	}
 	
-	//busqueda de un producto en concreto por el id
+	//Pedimos una cita concreta
 	@GetMapping("/{id}")
 	public ResponseEntity<Cita> findById(@PathVariable(name = "id") String id) {
 
@@ -76,7 +73,7 @@ public class CitaController {
 		return responseEntity;
 	}
 	
-	//obtener la citas odernadas por fecha
+	//Pedimos las citas ordenadas por fecha
 	@GetMapping("/ordenadas/{id}")
 	public ResponseEntity<List<Cita>> citasOrdenas(@PathVariable(name = "id") String id) {
 
@@ -91,10 +88,6 @@ public class CitaController {
 		citaLista = citas;
 	
 		citaLista.sort((o1, o2) -> o1.getFecha().compareTo(o2.getFecha()));
-		
-//		citaLista.add(citaService);
-//		
-//		citaLista.stream().filter(x => x.get)
 
 		if (citas != null) {
 			responseEntity = new ResponseEntity<List<Cita>>(citas, HttpStatus.OK);
@@ -104,7 +97,7 @@ public class CitaController {
 		return responseEntity;
 	}
 	
-	//añadir una Cita
+	//Añadimos una cita
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Cita cita, BindingResult result){
 
@@ -122,15 +115,11 @@ public class CitaController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
 			responseAsMap.put("errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
-		}
-
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
+		} 
 
 		try {
 			if(cita != null) {
@@ -143,7 +132,6 @@ public class CitaController {
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseAsMap.put("mensaje", "Error! no se ha podido guadar la cita");
 			responseAsMap.put("error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -153,7 +141,7 @@ public class CitaController {
 
 	}	
 	
-	//Borrado dando el id
+	//Borramos una cita
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cita> eliminar(@PathVariable(name = "id") String id){
 
@@ -170,7 +158,6 @@ public class CitaController {
 			}
 	
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseEntity = new ResponseEntity<Cita>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -178,8 +165,7 @@ public class CitaController {
 
 	}
 	
-	// Método que actualiza una cita
-	
+	//Actualizamos un a cita
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Cita cita, BindingResult result){
 		
@@ -194,13 +180,12 @@ public class CitaController {
 			}			
 			
 			responseAsMap.put("errores", errores);			
-			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Cita citaDB = citaService.getCita(id);
 			

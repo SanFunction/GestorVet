@@ -24,6 +24,7 @@ public class EstadoController {
 	@Autowired
 	private IEstadoService estadoService;
 	
+	// Pedimos la lista de los estados
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Estado>> findAll(){

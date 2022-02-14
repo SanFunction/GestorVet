@@ -34,6 +34,7 @@ public class MascotaController {
 	@Autowired
 	private IMascotaService mascotaService;
 
+	// Pedimos una lista de mascotas
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Mascota>> findAll() {
@@ -55,6 +56,7 @@ public class MascotaController {
 		return responseEntity;
 	}
 
+	// Pedimos una mascota concreta
 	@GetMapping("/{id}")
 	public ResponseEntity<Mascota> findById(@PathVariable(name = "id") String id) {
 
@@ -72,7 +74,7 @@ public class MascotaController {
 		return responseEntity;
 	}
 	
-	//mostrar diagnosticos de una mascota dado el id de la mascota
+	//Pedir los diagnosticos de una mascota dado el id de la mascota
 	@GetMapping("diagnostico/{id}")
 	public ResponseEntity<List<Diagnostico>> getDiagnosticosById(@PathVariable(name = "id") String id) {
 
@@ -116,8 +118,6 @@ public class MascotaController {
 			return responseEntity;
 		}
 
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
-
 		try {
 			if(mascota != null) {
 				mascotaService.addMascota(mascota);
@@ -130,7 +130,6 @@ public class MascotaController {
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseAsMap.put("Mensaje", "Error! no se ha podido guadar la mascota");
 			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -155,13 +154,12 @@ public class MascotaController {
 			}			
 			
 			responseAsMap.put("Errores", errores);			
-			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Mascota mascotaDB = mascotaService.getMascota(id);
 			

@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -30,11 +29,9 @@ public class Tratamiento implements Serializable {
 	private Long id;
 	
 	@NotNull
-	//@NotEmpty(message = "El campo no puede estar vacio")
 	private Double precio;
 	
 	@NotNull
-	//@NotEmpty(message = "El campo no puede estar vacio")
 	private String detalle;
 	
 }

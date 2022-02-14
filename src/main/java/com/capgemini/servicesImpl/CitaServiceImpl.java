@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.daos.ICitaDao;
-import com.capgemini.daos.IClienteDao;
 import com.capgemini.entities.Cita;
-import com.capgemini.entities.Cliente;
 import com.capgemini.services.ICitaService;
-import com.capgemini.services.IClienteService;
 
 @Service
 public class CitaServiceImpl implements ICitaService{
@@ -20,25 +17,21 @@ public class CitaServiceImpl implements ICitaService{
 	
 	@Override
 	public List<Cita> listaCitas() {
-		// TODO Auto-generated method stub
 		return citaDao.findAll();
 	}
 
 	@Override
 	public Cita getCita(String id) {
-		// TODO Auto-generated method stub
 		return citaDao.findById(Long.parseLong(id)).get();
 	}
 
 	@Override
 	public Cita addCita(Cita citaNueva) {
-		// TODO Auto-generated method stub
 		return citaDao.save(citaNueva);
 	}
 
 	@Override
 	public void deleteCita(Cita citaBorrar) {
-		// TODO Auto-generated method stub
 		citaDao.delete(citaBorrar);
 	}
 

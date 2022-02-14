@@ -33,6 +33,7 @@ public class TratamientoController {
 	@Autowired
 	private ITratamientoService tratamientoService;
 	
+	// Pedimos una lista de tratamientos
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Tratamiento>> findAll(){
@@ -54,23 +55,7 @@ public class TratamientoController {
 		return responseEntity ;
 	}
 	
-//	@GetMapping("/{id}")
-//	public ResponseEntity<Tratamiento> findById(@PathVariable(name = "id") String id) {
-//
-//		ResponseEntity<Tratamiento> responseEntity = null;
-//
-//		Tratamiento tratamiento= null;
-//
-//		tratamiento = tratamientoService.getTratamiento(id);
-//
-//		if (tratamiento != null) {
-//			responseEntity = new ResponseEntity<Tratamiento>(tratamiento, HttpStatus.OK);
-//		} else {
-//			responseEntity = new ResponseEntity<Tratamiento>(HttpStatus.NO_CONTENT);
-//		}
-//		return responseEntity;
-//	}
-	
+	//Añadimos un tratamiento
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Tratamiento tratamiento, BindingResult result){
 
@@ -88,15 +73,11 @@ public class TratamientoController {
 				errores.add(error.getDefaultMessage());
 			}
 
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
 			responseAsMap.put("errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
 		}
-
-		//Si no hay errores, entondes persistimos (guardamos) el producto 
 
 		try {
 			if(tratamiento != null) {
@@ -109,7 +90,6 @@ public class TratamientoController {
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseAsMap.put("mensaje", "Error! no se ha podido guadar el tratamiento");
 			responseAsMap.put("error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -119,6 +99,7 @@ public class TratamientoController {
 
 	}
 	
+	// Borramos un tratamiento
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Tratamiento> eliminar(@PathVariable(name = "id") String id){
 
@@ -135,7 +116,6 @@ public class TratamientoController {
 			}
 	
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseEntity = new ResponseEntity<Tratamiento>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -143,8 +123,7 @@ public class TratamientoController {
 
 	}
 	
-	// Método que actualiza una cita
-	
+	// Actualizamos un tratamiento
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Tratamiento tratamiento, BindingResult result){
 		
@@ -159,13 +138,12 @@ public class TratamientoController {
 			}			
 			
 			responseAsMap.put("errores", errores);			
-			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); //Nos pide que le digamos el estado ya que REST es responseEntity Status
+			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap, HttpStatus.BAD_REQUEST); 
 			
 			return responseEntity;
 		}
 		
 		try {
-			//MODIFICACION PARA QUE FUNCIONE EL PUT
 			
 			Tratamiento tratamientoDB = tratamientoService.getTratamiento(id);
 			

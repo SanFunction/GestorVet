@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.text.View;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.entities.Cliente;
 import com.capgemini.services.IClienteService;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping(value = "/cliente")
@@ -37,6 +33,7 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 
+	// Pedimos una lista de los clientes
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Cliente>> findAll() {
@@ -58,7 +55,7 @@ public class ClienteController {
 		return responseEntity;
 	}
 
-	
+	// Pedimos un cliente en concreto
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> findById(@PathVariable(name = "id") String id) {
 
@@ -76,7 +73,7 @@ public class ClienteController {
 		return responseEntity;
 	}
 	
-	//añadir un Cliente
+	//Añadimos un cliente
 	@PostMapping
 	public ResponseEntity<Map<String,Object>> guardar(@RequestBody Cliente cliente, BindingResult result){
 
@@ -93,16 +90,12 @@ public class ClienteController {
 			for (ObjectError error : result.getAllErrors()) {
 				errores.add(error.getDefaultMessage());
 			}
-
-			// salimos informando al qu erealizo la peticion (request) de los errores
-			// que han tenido lugar
+			
 			responseAsMap.put("Errores", errores);
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.BAD_REQUEST);
 
 			return responseEntity;
 		}
-
-		// BLOQUE TRY CATH 
 
 		try {
 			if(cliente != null) {
@@ -116,7 +109,6 @@ public class ClienteController {
 				responseEntity = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} catch (DataAccessException e) {
-			// TODO: handle exception
 			responseAsMap.put("Mensaje", "Error! no se ha podido guadar el cliente");
 			responseAsMap.put("Error", e.getMostSpecificCause());
 			responseEntity = new ResponseEntity<Map<String,Object>>(responseAsMap,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -126,8 +118,7 @@ public class ClienteController {
 
 	}
 	
-	// ACTUALIZAR CLIENTE
-	
+	// Actualizamos un cliente
 	@PutMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> actualizar(@PathVariable(name= "id") String id, @RequestBody Cliente cliente, BindingResult result){
 		
@@ -170,8 +161,7 @@ public class ClienteController {
 		
 	}
 	
-	//Borrado dando el ID
-	
+	// Borrado de un cliente
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Cliente> eliminar(@PathVariable(name = "id") String id){
 

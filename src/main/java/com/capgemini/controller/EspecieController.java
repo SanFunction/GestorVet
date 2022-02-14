@@ -22,6 +22,7 @@ public class EspecieController {
 	@Autowired
 	private IEspecieService especieService;
 	
+	// Pedimos la lista de las especies
 	@GetMapping
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Especie>> findAll(){
